@@ -1,0 +1,79 @@
+#resume: .../save/_train_lccd_sr/epoch-last.pth
+train_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: image file root for training (modality 1)
+      root_path_2: image file root for training (modality 2)
+      prompt_D1_M1: text prompt root for training (modality 1)
+      prompt_D1_M2: text prompt root for training (modality 2)
+      repeat: 1
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-paired
+    args:
+      # inp_size: 60
+      scale_min: 1
+      scale_max: 2
+      augment: true
+      sample_q: 27000
+      
+  batch_size: 12
+
+val_dataset:
+  dataset:
+    name: paired-image-folders
+    args:
+      root_path_1: image file root for validation (modality 1)
+      root_path_2: image file root for validation (modality 2)
+      prompt_D1_M1: text prompt root for validation (modality 1)
+      prompt_D1_M2: text prompt root for validation (modality 2)
+      repeat: 1
+      cache: in_memory
+  wrapper:
+    name: sr-implicit-paired
+    args:
+      #inp_size:
+      scale_min: 1
+      scale_max: 2
+      augment: true
+      sample_q: 27000
+      
+  batch_size: 12
+
+
+model_G:
+  name: lccd
+  args:
+    encoder_spec_src:
+      name: encoder_src
+      args:
+        scale: 1
+    encoder_spec_0:
+      name: encoder_tgt
+      args:
+        scale: 1
+    no_imnet: False
+      
+model_D:
+  name: NLDiscri
+  args:
+    input_nc: 8
+
+optimizer_G:
+  name: adam
+  args:
+    lr: 1.e-4
+optimizer_D:
+  name: adam
+  args:
+    lr: 1.e-4
+
+epoch_max: 300
+multi_step_lr:
+  milestones: [100, 200]
+  gamma: 0.5
+
+
+epoch_val: 10
+epoch_save: 10
