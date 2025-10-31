@@ -11,4 +11,4 @@ BrainSyn demonstrates unprecedented flexibility in performing both inter-modalit
   - [utils_clip](https://github.com/Wangyulin-user/BrainSyn/tree/main/utils_clip): This folder contains the utility functions required to run the models in stage 1.
   - [datasets](https://github.com/Wangyulin-user/BrainSyn/tree/main/datasets): This folder contains codes for the image synthesis model to process text and image data.
   - [configs](https://github.com/Wangyulin-user/BrainSyn/tree/main/configs): This folder contains `train_lccd_sr.yaml`, which is used to set all training/validation parameters.
-  - [models](https://github.com/Wangyulin-user/BrainSyn/tree/main/models_ours): This folder contains `lccd_bi.py`, which is a wrapper around the model. It also contains the network architectures of all the modules used in the image synthesis model.
+  - [models_ours](https://github.com/Wangyulin-user/BrainSyn/tree/main/models_ours): This folder contains `lccd_bi.py`, which is a wrapper around the model. It also contains the network architectures of all the modules used in the image synthesis model.
